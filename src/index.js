@@ -2,19 +2,27 @@ import React, {useEffect, useState} from 'react'
 import ReactDOM from 'react-dom';
 import "./css/index.scss";
 import "bootstrap/dist/css/bootstrap.css";
+import Sons_loops_Hang_drums from "./media/Sons_loops_Hang_drums.mp3"
+import Sons_loops_Hang_drums_9 from "./media/Sons_loops_Hang_drums_9.mp3"
+import Sons_loops_Hang_drums_2 from "./media/Sons_loops_Hang_drums_2.mp3"
+import Sons_loops_Hang_drums_3 from "./media/Sons_loops_Hang_drums_3.mp3"
+import Sons_loops_Hang_drums_4 from "./media/Sons_loops_Hang_drums_4.mp3"
+import Sons_loops_Hang_drums_5 from "./media/Sons_loops_Hang_drums_5.mp3"
+import Sons_loops_Hang_drums_6 from "./media/Sons_loops_Hang_drums_6.mp3"
+import Sons_loops_Hang_drums_7 from "./media/Sons_loops_Hang_drums_7.mp3"
+import Sons_loops_Hang_drums_8 from "./media/Sons_loops_Hang_drums_8.mp3"
 
-const Key = ({ text, id, display }) => {
-    const src = `/media/${id}.mp3`;
+const Key = ({ text, id, display, name }) => {
     const playSound = () => {
         document.querySelector(`#${text}`).play();
-        display(id)
+        display(name)
     }
 
     useEffect(() => {
         const handleKeyPress = event => {
             if(event.key.toUpperCase() === text){
                 document.querySelector(`#${text}`).play();
-                display(id)
+                display(name)
             }
 
         }
@@ -23,13 +31,13 @@ const Key = ({ text, id, display }) => {
        return () =>{
            document.removeEventListener("keypress",handleKeyPress);
        }
-    },[text, display, id])
+    },[text, display, name])
 
     return (
         <>
-          <div className="drum-pad" id={id} onClick={playSound}>
+          <div className="drum-pad" id={name} onClick={playSound}>
             {text}
-            <audio src={src} className="clip" id={text} type="audio/mp3" preload="auto" />
+            <audio src={id} className="clip" id={text} type="audio/mp3" preload="auto" />
           </div>
         </>
       )
@@ -37,20 +45,20 @@ const Key = ({ text, id, display }) => {
 
 const Pad = ({ display }) =>{
     const data = [
-        {text: "Q",song: "Sons_&_loops_Hang_drums"},
-        {text: "W",song: "Sons_&_loops_Hang_drums_9"},
-        {text: "E",song: "Sons_&_loops_Hang_drums_2"},
-        {text: "A",song: "Sons_&_loops_Hang_drums_3"},
-        {text: "S",song: "Sons_&_loops_Hang_drums_4"},
-        {text: "D",song: "Sons_&_loops_Hang_drums_5"},
-        {text: "Z",song: "Sons_&_loops_Hang_drums_6"},
-        {text: "X",song: "Sons_&_loops_Hang_drums_7"},
-        {text: "C",song: "Sons_&_loops_Hang_drums_8"},
+        {text: "Q",song: Sons_loops_Hang_drums, name:"Sons_loops_Hang_drums"},
+        {text: "W",song: Sons_loops_Hang_drums_9, name: "Sons_loops_Hang_drums_9"},
+        {text: "E",song: Sons_loops_Hang_drums_2, name: "Sons_loops_Hang_drums_2"},
+        {text: "A",song: Sons_loops_Hang_drums_3, name: "Sons_loops_Hang_drums_3"},
+        {text: "S",song: Sons_loops_Hang_drums_4, name: "Sons_loops_Hang_drums_4"},
+        {text: "D",song: Sons_loops_Hang_drums_5, name: "Sons_loops_Hang_drums_5"},
+        {text: "Z",song: Sons_loops_Hang_drums_6, name: "Sons_loops_Hang_drums_6"},
+        {text: "X",song: Sons_loops_Hang_drums_7, name: "Sons_loops_Hang_drums_7"},
+        {text: "C",song: Sons_loops_Hang_drums_8, name: "Sons_loops_Hang_drums_8"},
     ]
     return (
         <div className="keys">
           {
-              data.map((elt,index) => <Key text={elt.text} id={elt.song} display={display} key={index} />)
+              data.map((elt,index) => <Key text={elt.text} id={elt.song} display={display} key={index} name={elt.name} />)
           }
         </div>
       )
